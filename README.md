@@ -6,3 +6,4 @@
 
  See Jupyter notebook for specific instructions on where to get this data.
 
+**Note**: before running this script, make sure you first run the code that takes the PSR data and assigns parent asset lat/long coordinates to their child assets that do not have coordinates assigned to them.
