@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?><messages><msg code="0" type="2">Start Time: Friday, June 21, 2024 10:49:44 AM</msg><msg code="-2147467259" type="100">Traceback (most recent call last):
+  File "C:\Program Files\Arcgis\Pro\Resources\ArcToolbox\scripts\ExcelToTable.py", line 561, in &lt;module&gt;
+    ExcelToTableX.excel_to_table(**kwargs)
+  File "C:\Program Files\ArcGIS\Pro\Resources\ArcToolbox\Scripts\ExcelToTableX.py", line 500, in excel_to_table
+    out_table = arcpy.CreateTable_management(tableInfo.out_path,
+  File "C:\Program Files\Arcgis\Pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx", line 21835, in CreateTable
+  File "C:\Program Files\Arcgis\Pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx", line 21832, in CreateTable
+  File "C:\Program Files\ArcGIS\Pro\Resources\ArcPy\arcpy\geoprocessing\_base.py", line 520, in &lt;lambda&gt;
+    return lambda *args: val(*gp_fixargs(args, True))
+arcgisscripting.ExecuteError: ERROR 999999: Something unexpected caused the tool to fail. Contact Esri Technical Support (http://esriurl.com/support) to Report a Bug, and refer to the error help for potential solutions or workarounds.
+Failed to execute (CreateTable).
+
+</msg><msg code="0" type="0">Failed script Excel To Table...</msg><msg code="-2147467259" type="100">Failed to execute (ExcelToTable).</msg><msg code="0" type="3">Failed at Friday, June 21, 2024 10:50:04 AM (Elapsed Time: 19.55 seconds)</msg></messages>
