@@ -3,6 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#ArcGIS files
+psrUpdatePolitical_index/
+psrUpdatePolitical/
+psrUpdatePolitical.gdb/
+GpMessages
+*.aprx
+*.atbx
+
 # C extensions
 *.so
 
