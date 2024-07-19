@@ -4,8 +4,6 @@
  
  Updates PSR with political geographies like NYC Council, NYS Assembly, etc.
 
- See Jupyter notebook for specific instructions on where to get this data.
+*psrLatLongUpdate.py* is the module that updates PSR assets with no lat/long with their parent asset that does have a lat/long. This module is then run with the rest of the political district spatial joins in *psrPoliticalGeos.py*.
 
-**Note**: before running this script, make sure you first run the code that takes the PSR data and assigns parent asset lat/long coordinates to their child assets that do not have coordinates assigned to them.
-
-ArcGIS files and other dependencies that the code needs to run are not included here - you would need to have those stored locally.
+ArcGIS files and other dependencies that the code needs to run are not included here - you would need to have those stored locally. This includes any of the spatial files for political districts.
