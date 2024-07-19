@@ -10,6 +10,11 @@ psrUpdatePolitical.gdb/
 GpMessages
 *.aprx
 *.atbx
+*psrFinal
+psrFinal.gdb/
+ImportLog/
+*.xlsx
+psrFinal_index/
 
 # C extensions
 *.so
