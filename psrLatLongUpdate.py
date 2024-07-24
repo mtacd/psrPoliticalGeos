@@ -88,12 +88,12 @@ def updateLatLong():
     long_renamed_4_ = arcpy.management.AlterField(in_table=lat_renamed_4_, field="old_longitude", new_field_name="LONGITUDE", new_field_alias="LONGITUDE", clear_field_alias="DO_NOT_CLEAR")[0]
 
     # Process: union updated assets with the original table that has the updated assets removed. (Merge) (management)
-    lat_longs_updated = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\psrLatLongnoNulls_Merge"
+    lat_longs_updated_parents = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\psrParentLatLong_updated"
     arcpy.management.Merge(inputs=[long_renamed, long_renamed_4_], output=lat_longs_updated)
 
     # Process: Select only non-null lat/long coordinates (Select) (analysis)
     updatedLatLongNoNulls = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\psrLatLongupdatedLatLongNoNulls"
-    arcpy.analysis.Select(in_features=lat_longs_updated, out_feature_class=updatedLatLongNoNulls, where_clause="LATITUDE IS NOT NULL And LONGITUDE IS NOT NULL")
+    arcpy.analysis.Select(in_features=lat_longs_updated_parents, out_feature_class=updatedLatLongNoNulls, where_clause="LATITUDE IS NOT NULL And LONGITUDE IS NOT NULL")
 
     #the two code blocks below would generate an excel file of all assets and another with only lat/long. Since we use the geodatabase feature layer version of the table, the excel files aren't necessary
 
