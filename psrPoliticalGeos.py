@@ -12,13 +12,13 @@ from sys import argv
 import numpy as np
 
 #import the script that updates latitude and longitude
-import psrLatLongUpdate
+import psrParentLatLongUpdate
 
 
 # this matches a lat/long to those PSR assets who do not have a lat/long but their parent asset does.
 # the resulting feature layer that is all assets with a lat/long is brought back in.
 
-psrLatLongUpdate.updateLatLong()
+psrParentLatLongUpdate.updateLatLong()
 
 print(f"Latitudes and longitudes have been updated.")
 
