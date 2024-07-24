@@ -92,7 +92,7 @@ def updateLatLong():
     arcpy.management.Merge(inputs=[long_renamed, long_renamed_4_], output=lat_longs_updated_parents)
 
     # Process: Select only non-null lat/long coordinates (Select) (analysis)
-    updatedLatLongNoNulls = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\psrLatLongupdatedLatLongNoNulls"
+    updatedLatLongNoNulls = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\updatedLatLongNoNulls"
     arcpy.analysis.Select(in_features=lat_longs_updated_parents, out_feature_class=updatedLatLongNoNulls, where_clause="LATITUDE IS NOT NULL And LONGITUDE IS NOT NULL")
 
     #the two code blocks below would generate an excel file of all assets and another with only lat/long. Since we use the geodatabase feature layer version of the table, the excel files aren't necessary
