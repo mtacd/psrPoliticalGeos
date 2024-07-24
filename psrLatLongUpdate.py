@@ -95,13 +95,15 @@ def updateLatLong():
     updatedLatLongNoNulls = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\psrLatLongupdatedLatLongNoNulls"
     arcpy.analysis.Select(in_features=lat_longs_updated, out_feature_class=updatedLatLongNoNulls, where_clause="LATITUDE IS NOT NULL And LONGITUDE IS NOT NULL")
 
-    # Process: Table To Excel (Table To Excel) (conversion)
-    latLongUpdatedAll_xlsx = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrLatLonglatLongUpdatedAll.xlsx"
-    arcpy.conversion.TableToExcel(Input_Table=[lat_longs_updated], Output_Excel_File=latLongUpdatedAll_xlsx, Use_field_alias_as_column_header="ALIAS")
+    #the two code blocks below would generate an excel file of all assets and another with only lat/long. Since we use the geodatabase feature layer version of the table, the excel files aren't necessary
 
-    # Process: Table To Excel (Table To Excel) (conversion)
-    latLongUpdated_noNulls = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrLatLonglatLongUpdatedNoNulls.xlsx"
-    arcpy.conversion.TableToExcel(Input_Table=[updatedLatLongNoNulls], Output_Excel_File=latLongUpdated_noNulls, Use_field_alias_as_column_header="ALIAS")
+    # # Process: Table To Excel (Table To Excel) (conversion)
+    # latLongUpdatedAll_xlsx = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrLatLonglatLongUpdatedAll.xlsx"
+    # arcpy.conversion.TableToExcel(Input_Table=[lat_longs_updated], Output_Excel_File=latLongUpdatedAll_xlsx, Use_field_alias_as_column_header="ALIAS")
+
+    # # Process: Table To Excel (Table To Excel) (conversion)
+    # latLongUpdated_noNulls = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrLatLonglatLongUpdatedNoNulls.xlsx"
+    # arcpy.conversion.TableToExcel(Input_Table=[updatedLatLongNoNulls], Output_Excel_File=latLongUpdated_noNulls, Use_field_alias_as_column_header="ALIAS")
 
 if __name__ == '__main__':
     # Global Environment settings
