@@ -89,7 +89,7 @@ def updateLatLong():
 
     # Process: union updated assets with the original table that has the updated assets removed. (Merge) (management)
     lat_longs_updated_parents = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\psrParentLatLong_updated"
-    arcpy.management.Merge(inputs=[long_renamed, long_renamed_4_], output=lat_longs_updated)
+    arcpy.management.Merge(inputs=[long_renamed, long_renamed_4_], output=lat_longs_updated_parents)
 
     # Process: Select only non-null lat/long coordinates (Select) (analysis)
     updatedLatLongNoNulls = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\psrLatLongupdatedLatLongNoNulls"
