@@ -32,10 +32,14 @@ def updateLatLong():
         return \"N\"""")[0]
 
     # Process: rename latitude (2) (Alter Field) (management)
-    lat_renamed_2_ = arcpy.management.AlterField(in_table=PSR_Point_Data_table_3, field="LATITUDE", new_field_name="old_latitude", clear_field_alias="CLEAR_ALIAS")[0]
+    lat_renamed_2_ = arcpy.management.AlterField(in_table=PSR_Point_Data_table_3, 
+                                                 field="LATITUDE", 
+                                                 new_field_name="old_latitude", clear_field_alias="CLEAR_ALIAS")[0]
 
     # Process: rename longitude(3) (Alter Field) (management)
-    long_renamed_3_ = arcpy.management.AlterField(in_table=lat_renamed_2_, field="LONGITUDE", new_field_name="old_longitude", clear_field_alias="CLEAR_ALIAS")[0]
+    long_renamed_3_ = arcpy.management.AlterField(in_table=lat_renamed_2_, 
+                                                  field="LONGITUDE", 
+                                                  new_field_name="old_longitude", clear_field_alias="CLEAR_ALIAS")[0]
 
     # Process: Select only rows that are assets with no lat/long (Select) (analysis)
     noLatLong = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\psrLatLongnoLatLong"
@@ -94,6 +98,13 @@ def updateLatLong():
     # Process: Select only non-null lat/long coordinates (Select) (analysis)
     updatedLatLongNoNulls = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\updatedLatLongNoNulls"
     arcpy.analysis.Select(in_features=lat_longs_updated_parents, out_feature_class=updatedLatLongNoNulls, where_clause="LATITUDE IS NOT NULL And LONGITUDE IS NOT NULL")
+
+    # delete intermediary tables that aren't needed for anything else later on 
+    arcpy.management.Delete(
+    in_data="psrLatLong;psrLatLong_Select;psrLatLongnoLatLong;psrLatLongnoNulls;psrLatLongnoNulls_1;psrLatLongnoNulls_Merge;psrLatLongparents;psrLatLongupdatedLatLongNoNulls",
+    data_type=""
+)
+
 
     #the two code blocks below would generate an excel file of all assets and another with only lat/long. Since we use the geodatabase feature layer version of the table, the excel files aren't necessary
 
