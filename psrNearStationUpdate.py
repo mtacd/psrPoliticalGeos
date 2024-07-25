@@ -69,14 +69,21 @@ def nearStation():
                                             ['LATITUDE_1', 'LONGITUDE_1'])
     
     # then union/merge the two back together again 
-    merged = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\merged"
+    updateNearStations = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\updateNearStations"
     arcpy.management.Merge([delete_old, updateNames2],
-                                    output = merged)
+                                    output = updateNearStations)
+    
+    # delete intermediary tables that aren't needed for anything else later on 
+    arcpy.management.Delete(
+    in_data="psrParentLatLong_updated; nearStation; removed",
+    data_type="")
 
-    columns = [f.name for f in arcpy.ListFields(merged) if f.type!="Geometry"]
-    #List the fields you want to include. I want all columns except the geometry
-    df = pd.DataFrame(data=arcpy.da.SearchCursor(merged, columns), columns=columns)
+    # # used to check the attribute table without having to open ArcGIS Pro
+    # columns = [f.name for f in arcpy.ListFields(merged) if f.type!="Geometry"]
+    # #List the fields you want to include. I want all columns except the geometry
+    # df = pd.DataFrame(data=arcpy.da.SearchCursor(merged, columns), columns=columns)
 
-    return df
-
-nearStation()
+if __name__ == '__main__':
+    # Global Environment settings
+    with arcpy.EnvManager(scratchWorkspace=r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb", workspace=r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb"):
+        nearStation()

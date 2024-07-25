@@ -12,17 +12,15 @@ from sys import argv
 import numpy as np
 
 #import the script that updates latitude and longitude
-import psrParentLatLongUpdate
+import psrNearStationUpdate
 
 
-# this matches a lat/long to those PSR assets who do not have a lat/long but their parent asset does.
-# the resulting feature layer that is all assets with a lat/long is brought back in.
+# this pulls in the two other modules in the script - one updates assets that don't have a lat/long with their parent lat/long (if available). If an asset has no lat/long and their parent also doesn't have a lat/long, the other script checks to see if they're near a station. If they are, it updates the asset with the station lat/long that it is near. 
+psrNearStationUpdate.nearStation()
 
-psrParentLatLongUpdate.updateLatLong()
+print(f"Latitudes and longitudes have been updated with parent/station lat/longs.")
 
-print(f"Latitudes and longitudes have been updated.")
-
-PSRs = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\psrLatLongupdatedLatLongNoNulls"
+PSRs = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\updateNearStations"
 
 cityCouncil_dir = r"C:/Users/1292346/gisProjects/PSR/psrFinal/districts/nycCouncil_Project.shp"
 
