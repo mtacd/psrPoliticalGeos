@@ -12,17 +12,15 @@ from sys import argv
 import numpy as np
 
 #import the script that updates latitude and longitude
-import psrLatLongUpdate
+import psrNearStationUpdate
 
 
-# this matches a lat/long to those PSR assets who do not have a lat/long but their parent asset does.
-# the resulting feature layer that is all assets with a lat/long is brought back in.
+# this pulls in the two other modules in the script - one updates assets that don't have a lat/long with their parent lat/long (if available). If an asset has no lat/long and their parent also doesn't have a lat/long, the other script checks to see if they're near a station. If they are, it updates the asset with the station lat/long that it is near. 
+psrNearStationUpdate.nearStation()
 
-psrLatLongUpdate.updateLatLong()
+print(f"Latitudes and longitudes have been updated with parent/station lat/longs.")
 
-print(f"Latitudes and longitudes have been updated.")
-
-PSRs = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\psrLatLongupdatedLatLongNoNulls"
+PSRs = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\noNullNearStation"
 
 cityCouncil_dir = r"C:/Users/1292346/gisProjects/PSR/psrFinal/districts/nycCouncil_Project.shp"
 
@@ -60,15 +58,6 @@ def Model(PSR_assets = PSRs,
     arcpy.ImportToolbox(r"C:\Program Files\Arcgis\Pro\Resources\ArcToolbox\toolboxes\Conversion Tools.tbx")
     arcpy.ImportToolbox(r"C:\Program Files\Arcgis\Pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx")
 
-    # Process: Excel To Table (Excel To Table) (conversion)
-    # PSR_Assets = f"{output}/PSR_Assets"
-    # arcpy.conversion.ExcelToTable(
-    #     Input_Excel_File = Input_Excel_File, 
-    #     Output_Table = PSR_Assets, 
-    #     Sheet = "updatedLatLongNoNulls", 
-    #     field_names_row = 1, 
-    #     cell_range = ""
-    # )
     print(f"Processing spatial joins...")
     # Process: XY Table To Point (XY Table To Point) (management)
     PSR_Assets_XY = f"{output}/PSR_Assets_XY"
@@ -466,11 +455,10 @@ def transform_rows(assets_table = f"{output_dir}/PSR_Assets_Parent_CC_CM_CO_SA_S
     # export to excel
     finalDF.to_excel(fr"{excel_output}/PSR_Assets_District_Join_Result.xlsx")
 
+    # delete intermediary tables from the geodatabase that aren't needed for anything else later on 
+    arcpy.management.Delete(
+    in_data="PSR_Assets_XY;PSR_Assets_Parent_CC;PSR_Assets_Parent_CC_CM;PSR_Assets_Parent_CC_CM_CO;PSR_Assets_Parent_CC_CM_CO_SA;PSR_Assets_Parent_CC_CM_CO_SA_SS;PSR_Assets_Parent_CC_CM_CO_SA_SS_NYcounties;PSR_Assets_Parent_CC_CM_CO_SA_SS_NYcounties_cities;PSR_Assets_500ftBuffer;PSR_Assets_CityCouncil;PSR_Assets_CommunityDistrict;PSR_Assetse_CongressionalDistrict;PSR_Assets_StateAssembly;PSR_Assets_StateSenate;psrParentLatLong_updated;nearStation;removed;psrLatLong;psrLatLong_Select;psrLatLongnoLatLong;psrLatLongnoNulls;psrLatLongnoNulls_1;psrLatLongnoNulls_Merge;psrLatLongparents;psrLatLongupdatedLatLongNoNulls",
+    data_type="")
 
 if __name__ == '__main__':
     transform_rows()
-
-
-
-
-
