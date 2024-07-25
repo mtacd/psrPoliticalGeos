@@ -58,15 +58,6 @@ def Model(PSR_assets = PSRs,
     arcpy.ImportToolbox(r"C:\Program Files\Arcgis\Pro\Resources\ArcToolbox\toolboxes\Conversion Tools.tbx")
     arcpy.ImportToolbox(r"C:\Program Files\Arcgis\Pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx")
 
-    # Process: Excel To Table (Excel To Table) (conversion)
-    # PSR_Assets = f"{output}/PSR_Assets"
-    # arcpy.conversion.ExcelToTable(
-    #     Input_Excel_File = Input_Excel_File, 
-    #     Output_Table = PSR_Assets, 
-    #     Sheet = "updatedLatLongNoNulls", 
-    #     field_names_row = 1, 
-    #     cell_range = ""
-    # )
     print(f"Processing spatial joins...")
     # Process: XY Table To Point (XY Table To Point) (management)
     PSR_Assets_XY = f"{output}/PSR_Assets_XY"
@@ -463,6 +454,11 @@ def transform_rows(assets_table = f"{output_dir}/PSR_Assets_Parent_CC_CM_CO_SA_S
 
     # export to excel
     finalDF.to_excel(fr"{excel_output}/PSR_Assets_District_Join_Result.xlsx")
+
+    # delete intermediary tables from the geodatabase that aren't needed for anything else later on 
+    arcpy.management.Delete(
+    in_data="PSR_Assets_XY;PSR_Assets_Parent_CC; PSR_Assets_Parent_CC_CM; PSR_Assets_Parent_CC_CM_CO; PSR_Assets_Parent_CC_CM_CO_SA; PSR_Assets_Parent_CC_CM_CO_SA_SS; PSR_Assets_Parent_CC_CM_CO_SA_SS_NYcounties; PSR_Assets_Parent_CC_CM_CO_SA_SS_NYcounties_cities; PSR_Assets_500ftBuffer; PSR_Assets_CityCouncil; PSR_Assets_CommunityDistrict; PSR_Assetse_CongressionalDistrict; PSR_Assets_StateAssembly; PSR_Assets_StateSenate",
+    data_type="")
 
 
 if __name__ == '__main__':
