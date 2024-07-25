@@ -73,10 +73,10 @@ def nearStation():
     arcpy.management.Merge([delete_old, updateNames2],
                                     output = updateNearStations)
     
-    # delete intermediary tables that aren't needed for anything else later on 
-    arcpy.management.Delete(
-    in_data="psrParentLatLong_updated; nearStation; removed",
-    data_type="")
+
+    # select only non-null lat/long assets for the next module to take in 
+    noNullNearStation = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\noNullNearStation"
+    arcpy.analysis.Select(in_features=updateNearStations, out_feature_class=noNullNearStation, where_clause="LATITUDE IS NOT NULL And LONGITUDE IS NOT NULL")
 
     # # used to check the attribute table without having to open ArcGIS Pro
     # columns = [f.name for f in arcpy.ListFields(merged) if f.type!="Geometry"]

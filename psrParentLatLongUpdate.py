@@ -99,13 +99,6 @@ def updateLatLong():
     updatedLatLongNoNulls = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\updatedLatLongNoNulls"
     arcpy.analysis.Select(in_features=lat_longs_updated_parents, out_feature_class=updatedLatLongNoNulls, where_clause="LATITUDE IS NOT NULL And LONGITUDE IS NOT NULL")
 
-    # delete intermediary tables that aren't needed for anything else later on 
-    arcpy.management.Delete(
-    in_data="psrLatLong;psrLatLong_Select;psrLatLongnoLatLong;psrLatLongnoNulls;psrLatLongnoNulls_1;psrLatLongnoNulls_Merge;psrLatLongparents;psrLatLongupdatedLatLongNoNulls",
-    data_type=""
-)
-
-
     #the two code blocks below would generate an excel file of all assets and another with only lat/long. Since we use the geodatabase feature layer version of the table, the excel files aren't necessary
 
     # # Process: Table To Excel (Table To Excel) (conversion)
