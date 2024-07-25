@@ -20,7 +20,7 @@ psrNearStationUpdate.nearStation()
 
 print(f"Latitudes and longitudes have been updated with parent/station lat/longs.")
 
-PSRs = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\updateNearStations"
+PSRs = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\noNullNearStation"
 
 cityCouncil_dir = r"C:/Users/1292346/gisProjects/PSR/psrFinal/districts/nycCouncil_Project.shp"
 
