@@ -4,7 +4,7 @@
  
  Updates PSR with political geographies like NYC Council, NYS Assembly, etc. and updates the PSR assets' lat/longs with parent lat/longs or station lat/longs. 
 
-There are three modules (Module 1 is the main one while modluesl): 
+There are three modules. The first is at the top level, and then the other two are nested into each other: 
 * *psrPoliticalGeo.py*  
    This is the main script and **it's the only one that actually needs to run**. Modules 2-3 are linked/nested within each other, so running *psrPoliticalGeo.py* will run everything. This script is where all of the political district information is attached to the assets as well as city/town and county (both NY and CT) after the assets lat/longs have been updated.
 
