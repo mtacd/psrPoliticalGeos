@@ -11,7 +11,7 @@ from sys import argv
 # 
 import numpy as np
 
-#import the script that updates latitude and longitude
+#import the script that updates latitude and Longitude
 import psrNearStationUpdate
 
 
