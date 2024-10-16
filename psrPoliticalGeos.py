@@ -22,6 +22,11 @@ psrNearStationUpdate.nearStation()
 
 print(f"Latitudes and longitudes have been updated with parent/station lat/longs.")
 
+# run script that generates the metadata table
+psrSpatialMetadata.metadata()
+
+print(f"Metadata table has been generated.")
+
 PSRs = r"C:\Users\1292346\gisProjects\PSR\psrFinal\psrFinal.gdb\noNullNearStation"
 
 cityCouncil_dir = r"C:/Users/1292346/gisProjects/PSR/psrFinal/districts/nycCouncil_Project.shp"
