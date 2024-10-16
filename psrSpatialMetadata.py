@@ -20,7 +20,6 @@ urls = {
 geos = []
 dates = []
 metaFieldsSocrata = '?$select=:*, *'
-df = pd.DataFrame(columns = ['geo', 'last modified date', 'last checked on'])
 
 for geo in urls: 
     if "data.cityofnewyork" in urls[geo]:
