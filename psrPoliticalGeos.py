@@ -14,9 +14,11 @@ import numpy as np
 #import the script that updates latitude and Longitude
 import psrNearStationUpdate
 
+#import the script that creates the metadata table
+import psrSpatialMetadata
 
 # this pulls in the two other modules in the script - one updates assets that don't have a lat/long with their parent lat/long (if available). If an asset has no lat/long and their parent also doesn't have a lat/long, the other script checks to see if they're near a station. If they are, it updates the asset with the station lat/long that it is near. 
-#psrNearStationUpdate.nearStation()
+psrNearStationUpdate.nearStation()
 
 print(f"Latitudes and longitudes have been updated with parent/station lat/longs.")
 
