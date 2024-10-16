@@ -1,7 +1,7 @@
 # import requests
 import requests
 import pandas as pd
-from datetime import date, datetime
+from datetime import datetime
 
 #set up dictionary of URLs
 
@@ -21,7 +21,6 @@ geos = []
 dates = []
 metaFieldsSocrata = '?$select=:*, *'
 df = pd.DataFrame(columns = ['geo', 'last modified date', 'last checked on'])
-today = date.today()
 
 for geo in urls: 
     if "data.cityofnewyork" in urls[geo]:
@@ -31,13 +30,15 @@ for geo in urls:
         dates.append(modified)
     elif "arcgis" in urls[geo]:
         r = requests.get(urls[geo])
-        modified = r.json()['editingInfo']['dataLastEditDate']
+        modified_raw = r.json()['editingInfo']['dataLastEditDate']
+        modified = datetime.fromtimestamp(int(modified_raw / 1000))
         geos.append(geo)
         dates.append(modified)
 
 df = pd.DataFrame({'geo' : geos, 
-                    'last modified date' : dates, 
-                    'last checked on' : today
+                    'last modified date' : dates
                     })
+
+df['last modified date'] = pd.to_datetime(df['last modified date'])
 
 df
