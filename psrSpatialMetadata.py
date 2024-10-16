@@ -46,7 +46,8 @@ df = pd.DataFrame({'geo' : geos,
                     'last modified date' : dates
                     })
 
-#convert the date field to a datetime
+# convert the date field to a datetime
 df['last modified date'] = pd.to_datetime(df['last modified date'])
 
-df
+# export CSV
+df.to_csv('psrGeoMetadata.csv', index=False)
