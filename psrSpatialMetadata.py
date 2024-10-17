@@ -37,6 +37,7 @@ def metadata():
             # if the URL is in the ArcGIS API, get the last modified date from the JSON response, divide it by 1000, an dhtne convert it to a date field. Append results to list.
             r = requests.get(urls[geo])
             modified_raw = r.json()['editingInfo']['dataLastEditDate']
+            # the ArcGIS API gives you date values in milliseconds, so they need to be divided by 1000 first before being converted to a datetime
             modified = datetime.fromtimestamp(int(modified_raw / 1000))
             geos.append(geo)
             dates.append(modified)
