@@ -50,5 +50,5 @@ def metadata():
     # convert the date field to a datetime
     df['last modified date'] = pd.to_datetime(df['last modified date'])
 
-    # export CSV
+    # export to Excel
     df.to_excel('psrGeoMetadata.xlsx', index=False)
