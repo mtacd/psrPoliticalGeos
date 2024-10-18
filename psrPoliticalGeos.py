@@ -432,7 +432,7 @@ def transform_rows(assets_table = f"{output_dir}/PSR_Assets_Parent_CC_CM_CO_SA_S
     finalDF = assets.merge(city_and_county, how = 'inner', left_on = "KEY_ASSET", right_on = "KEY_ASSET" )
 
     # export to excel
-    finalDF.to_excel(fr"{excel_output}/PSR_Assets_District_Join_Result.xlsx")
+    finalDF.to_excel(fr"{excel_output}/PSR_Assets_District_Join_Result.xlsx", index=False)
 
     # delete intermediary tables from the geodatabase that aren't needed for anything else later on 
     arcpy.management.Delete(
